@@ -1,28 +1,45 @@
-import { Card, Title, Text } from '@tremor/react';
+'use client';
+import { Card, Title, Text, Flex, Button } from '@tremor/react';
 import { queryBuilder } from '../lib/planetscale';
 import Search from './search';
 import ProductsTable from './table';
+import ModalButton from './modal-button';
 
 export default async function IndexPage({
-                                          searchParams
-                                        }: {
+  searchParams
+}: {
   searchParams: { q: string };
 }) {
   const search = searchParams.q ?? '';
   const products = await queryBuilder
     .selectFrom('productos')
-    .select(['id', 'nombre', 'composicion', 'tipo', 'grupo', 'para', 'dosis', 'cuando', 'cultivo', 'ps', 'notas'])
+    .select([
+      'id',
+      'nombre',
+      'composicion',
+      'tipo',
+      'grupo',
+      'para',
+      'dosis',
+      'cuando',
+      'cultivo',
+      'ps',
+      'notas'
+    ])
     .where('nombre', 'like', `%${search}%`)
     .execute();
 
   return (
-    <main className='p-4 md:p-10 mx-auto max-w-7xl'>
-      <Title>Productos</Title>
-      <Text>
-        Listado de productos fitosanitarios
-      </Text>
+    <main className="p-4 md:p-10 mx-auto max-w-7xl">
+      <Flex>
+        <div>
+          <Title>Productos</Title>
+          <Text>Listado de productos fitosanitarios</Text>
+        </div>
+        <ModalButton />
+      </Flex>
       <Search />
-      <Card className='mt-6'>
+      <Card className="mt-6">
         {/* @ts-expect-error Server Component */}
         <ProductsTable products={products} />
       </Card>
