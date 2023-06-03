@@ -27,6 +27,7 @@ export default async function IndexPage({
       'notas'
     ])
     .where('nombre', 'like', `%${search}%`)
+    .orderBy('nombre', 'asc')
     .execute();
 
   return (
