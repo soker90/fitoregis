@@ -16,7 +16,7 @@ const RootLayout = async ({ children }: {
   const session = await getServerSession();
 
   return (
-    <html lang="en" className="h-full bg-gray-50">
+    <html lang="es" className="h-full bg-gray-50">
       <body className="h-full">
         <Suspense>
           <Navbar user={session?.user} />
