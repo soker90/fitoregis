@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { queryBuilder } from 'lib/planetscale';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: any, res: any) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
@@ -10,9 +11,22 @@ export default async (req: any, res: any) => {
   const session = await getServerSession(req, res, authOptions);
 
   if (session) {
-    const { id, nombre, composicion, tipo, grupo, para, dosis, cuando, cultivo, ps, notas } = req.body;
+    const {
+      id,
+      nombre,
+      composicion,
+      tipo,
+      grupo,
+      para,
+      dosis,
+      cuando,
+      cultivo,
+      ps,
+      notas
+    } = req.body;
 
-    if(!nombre) res.status(400).json({ message: 'El nombre es obligatorio' }).end();
+    if (!nombre)
+      res.status(400).json({ message: 'El nombre es obligatorio' }).end();
 
     await queryBuilder
       .insertInto('productos')
@@ -30,12 +44,14 @@ export default async (req: any, res: any) => {
         notas
       })
       .execute();
-    return res.status(200).redirect(307, "/");
+    return res.status(200).redirect(307, '/');
   } else {
-    res.status(403).json({
-      message:
-        'You must be sign in to view the protected content on this page.'
-    }).end();
+    res
+      .status(403)
+      .json({
+        message:
+          'You must be sign in to view the protected content on this page.'
+      })
+      .end();
   }
-
-}
+};
