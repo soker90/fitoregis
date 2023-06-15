@@ -16,13 +16,15 @@ const RootLayout = async ({ children }: {
   const session = await getServerSession();
 
   return (
-    <html lang='en' className='h-full bg-gray-50'>
-    <body className='h-full'>
-    <Suspense fallback='...'>
-      <Navbar user={session?.user} />
-    </Suspense>
-    {Boolean(session?.user) && children}
-    </body>
+    <html lang="en" className="h-full bg-gray-50">
+      <body className="h-full">
+        <Suspense>
+          <Navbar user={session?.user} />
+        </Suspense>
+        {Boolean(session?.user) && children}
+      </body>
+      
+    
     </html>
   );
 };
