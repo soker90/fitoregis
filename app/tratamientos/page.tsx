@@ -43,7 +43,7 @@ const RegistryPage = async ({
           <Title>Tratamientos</Title>
           <Text>Registro de tratamientos</Text>
         </div>
-        <NewButton products={products} />
+        <NewButton products={products as any} />
       </Flex>
       <Search />
       <Card className="mt-6">
