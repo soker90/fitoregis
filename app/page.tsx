@@ -40,8 +40,7 @@ export default async function IndexPage({
       </Flex>
       <Search />
       <Card className='mt-6'>
-        {/* @ts-expect-error Server Component */}
-        <ProductsTable products={products} />
+        <ProductsTable products={products as any} />
       </Card>
     </main>
   );
