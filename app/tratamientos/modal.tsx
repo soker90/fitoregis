@@ -3,7 +3,7 @@ import { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { TextInput } from '@tremor/react';
-import { SelectBox, SelectBoxItem } from '@tremor/react';
+import { Select, SelectItem } from '@tremor/react';
 import { Product } from 'models';
 
 const FIELDS = [
@@ -90,36 +90,35 @@ const Modal = ({
                           >
                             Producto
                           </label>
-                          <SelectBox id="productoid">
+                          <Select id="productoid">
                             {products.map(({ id, nombre }) => (
-                              <SelectBoxItem
+                              <SelectItem
                                 key={id.toString()}
                                 value={id.toString()}
-                                text={nombre}
-                              />
-                            ))}
-                          </SelectBox>
-                        </div>
-                        {FIELDS.map(
-                          ({ id, label, placeholder, full }) => (
-                            <div
-                              className={`p-4 ${full ? 'w-full' : 'md:w-1/3'}`}
-                              key={id}
-                            >
-                              <label
-                                htmlFor={id}
-                                className="block text-sm font-medium text-gray-700"
                               >
-                                {label}
-                              </label>
-                              <TextInput
-                                placeholder={placeholder}
-                                name={id}
-                                id={id}
-                              />
-                            </div>
-                          )
-                        )}
+                                {nombre}
+                              </SelectItem>
+                            ))}
+                          </Select>
+                        </div>
+                        {FIELDS.map(({ id, label, placeholder, full }) => (
+                          <div
+                            className={`p-4 ${full ? 'w-full' : 'md:w-1/3'}`}
+                            key={id}
+                          >
+                            <label
+                              htmlFor={id}
+                              className="block text-sm font-medium text-gray-700"
+                            >
+                              {label}
+                            </label>
+                            <TextInput
+                              placeholder={placeholder}
+                              name={id}
+                              id={id}
+                            />
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
