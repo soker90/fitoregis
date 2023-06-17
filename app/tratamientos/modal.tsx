@@ -54,7 +54,7 @@ const Modal = ({
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <form
             className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
-            action="/api/tratamientos"
+            action="/api/treatments"
             method="post"
           >
             <Transition.Child
