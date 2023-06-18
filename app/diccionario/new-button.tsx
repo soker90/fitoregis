@@ -18,7 +18,7 @@ const NewButton = () => {
   const handleClick = () => setOpen(true);
   return (
     <>
-      <Button className='ml-auto' icon={PlusIcon} variant='secondary' onClick={handleClick}>Nuevo producto</Button>
+      <Button className='ml-auto' icon={PlusIcon} variant='secondary' onClick={handleClick}>Añadir</Button>
       <Modal open={open} onClose={handleClose} />
     </>
   );
