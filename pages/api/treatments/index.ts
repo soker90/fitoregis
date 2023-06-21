@@ -12,7 +12,6 @@ export default async (req: any, res: any) => {
 
   if (session) {
     const {
-      productid,
       para,
       dosis,
       cultivo,
@@ -22,7 +21,7 @@ export default async (req: any, res: any) => {
       siguiente
     } = req.body;
 
-    if (!productid)
+    if (!productoid)
       res.status(400).json({ message: 'El producto es obligatorio' }).end();
 
     await queryBuilder

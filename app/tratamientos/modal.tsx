@@ -2,13 +2,13 @@
 import { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
-import { TextInput } from '@tremor/react';
+import { TextInput, DateRangePicker } from '@tremor/react';
 import { Select, SelectItem } from '@tremor/react';
 import { Product } from 'models';
 
 const FIELDS = [
   { id: 'cultivo', label: 'Cultivo', placeholder: 'Cultivo' },
-  { id: 'fecha', label: 'Fecha', placeholder: 'Fecha' },
+  { id: 'fecha', label: 'Fecha', placeholder: 'aaaa-mm-dd' },
   { id: 'para', label: 'Tratamiento para', placeholder: 'Tratamiento para' },
   { id: 'dosis', label: 'Dosis', placeholder: 'Dosis' },
   { id: 'siguiente', label: 'Siguiente', placeholder: 'Siguiente' },
@@ -90,7 +90,8 @@ const Modal = ({
                           >
                             Producto
                           </label>
-                          <Select id="productoid">
+                          {/* @ts-ignore */}
+                          <Select id="productoid" name="productoid" inputMode='numeric'>
                             {products.map(({ id, nombre }) => (
                               <SelectItem
                                 key={id.toString()}
